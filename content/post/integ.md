@@ -14,10 +14,10 @@ math: true
 
 常见的插值：
 - 线性插值：
-$$\color{red}{\varphi_1(x)=y_0l_0(x)+y_1l_1(x)}$$
+$${\varphi_1(x)=y_0l_0(x)+y_1l_1(x)}$$
 $$l_0(x)=\frac{x-x_1}{x_0-x_1},\quad l_1(x)=\frac{x-x_0}{x_1-x_0}$$
 - 二次插值：
-$$\color{red}{\varphi_2(x)=y_0l_0(x)+y_1l_1(x)+y_2l_2(x)}$$
+$${\varphi_2(x)=y_0l_0(x)+y_1l_1(x)+y_2l_2(x)}$$
 
 $$l_0(x)=\frac{(x-x_1)(x-x_2)}{(x_0-x_1)(x_0-x_2)}\quad l_1(x)=\frac{(x-x_0)(x-x_2)}{(x_1-x_0)(x_1-x_2)}\quad l_2(x)=\frac{(x-x_0)(x-x_1)}{(x_2-x_0)(x_2-x_1)}$$
 
@@ -28,7 +28,6 @@ $$\phi (x) = \sum\limits_{i = 0}^n {{y_i}{l_i}(x)} $$
 
  
 $$
-\tiny
 \begin{aligned}
 {l_i}(x) &= \frac{{(x - {x_0}) \cdots (x - {x_{i - 1}})(x - {x_{i + 1}}) \cdots (x - {x_n})}}{{({x_i} - {x_0}) \cdots ({x_i} - {x_{i - 1}})({x_i} - {x_{i + 1}}) \cdots ({x_i} - {x_n})}}\\
 & = \frac{{\omega (x)}}{{(x - {x_i})\omega '({x_i})}}    
@@ -39,7 +38,7 @@ $$
 ### 数值积分公式
 
 
-**复化梯形公式**：对 $f(x)$线性插值，其中 $f(x_0)=a,f(x_n)=b,x_i=a+ih$，可得：
+**复化梯形公式**：对 $f(x)$ 线性插值，其中 $f(x_0)=a,f(x_n)=b,x_i=a+ih$ ，可得：
 
 $$\begin{array}{c}
 \int_a^b {f(x)dx}  = \frac{h}{2}[f(a) + 2\sum\limits_{i = 1}^{n - 1} {f(a + ih)}  + f(b)] + O({h^2})\\
@@ -55,7 +54,7 @@ function F=echelon(y,xa,xb,n)
 end    
 ```
 
-**复化Simpson公式**: 对 $f(x)$在 $[a,b]$分 $2n$区间每个区间 $[x_i,x_{i+1}]$进行二次插值，可得到如下公式：
+**复化Simpson公式**: 对 $f(x)$ 在 $[a,b]$ 分 $2n$ 区间每个区间 $[x_i,x_{i+1}]$ 进行二次插值，可得到如下公式：
 
  
 $$
@@ -77,7 +76,7 @@ end
 ```
 
 
-**3/8 Simpson公式**:采取三阶插值的积分算法,将 $[a,b]$区间 $3n$等分，$h = (b - a)/3n,\quad {x_{k}= a + kh (k = 0,1,...3n)}$,则可得：
+**3/8 Simpson公式**:采取三阶插值的积分算法,将 $[a,b]$ 区间 $3n$ 等分，$h = (b - a)/3n,\quad {x_{k}= a + kh (k = 0,1,...3n)}$ ,则可得：
 
 $$\int_a^b {f(x)dx}  = \frac{{3h}}{8}[f(a) + 3\sum\limits_{k = 0}^{n - 1} {[f(a + (3k + 1)h)}  + f(a + (3k + 2)h)] + 2\sum\limits_{k = 1}^{n - 1} {f(a + 3kh)}  + f(b)]$$
 
@@ -96,7 +95,7 @@ end
 
 ### 数值求根
 
-**二分法** : 最常见最简单的求根方式，利用满足 $f(a)f(b)<0$必在 $[a,b]$内有根进行二分求根。优点是可以找到所有根，但收敛速度慢。
+**二分法** : 最常见最简单的求根方式，利用满足 $f(a)f(b)<0$ 必在 $[a,b]$ 内有根进行二分求根。优点是可以找到所有根，但收敛速度慢。
 
 ```matlab
 function [x,n]=bisection_root(f,a,b,delta)

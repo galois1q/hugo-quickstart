@@ -1,4 +1,15 @@
----
++++
+author = "Hugo Authors"
+title: "pde求解算法"
+date: "today"
+description = "计算物理相关总结"
+tags = [
+    "计算物理",
+]
+math: true
++++
+
+<!-- ---
 title: '二阶pde数值求解算法'
 subtitle: 
 summary: '计算物理相关总结'
@@ -12,7 +23,7 @@ lastMod: 'today'
 image:
   caption: ''
   focal_point: ''
----
+--- -->
 
 
 

@@ -1,18 +1,16 @@
----
-title: '数值积分与数值求根'
-subtitle: 
-summary: '计算物理相关总结'
-authors:
-  - admin
-tags: [计算物理]
-categories: []
-projects: []
-date: 'today'
-lastMod: 'today'
-image:
-  caption: ''
-  focal_point: ''
----
++++
+author = "Hugo Authors"
+title: "数值积分与数值求根"
+date: "today"
+description = "计算物理相关总结"
+tags = [
+    "计算物理",
+]
+math: true
++++
+
+
+
 
 
 ### 插值

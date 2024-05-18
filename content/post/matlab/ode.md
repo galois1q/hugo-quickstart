@@ -1,4 +1,16 @@
----
++++
+author = "Hugo Authors"
+title: "ode求解算法"
+date: "today"
+description = "计算物理相关总结"
+tags = [
+    "计算物理",
+]
+math: true
++++
+
+
+<!-- ---
 title: 'ode求解算法'
 subtitle: 
 summary: '计算物理相关总结'
@@ -12,7 +24,9 @@ lastMod: 'today'
 image:
   caption: ''
   focal_point: ''
----
+--- -->
+
+
 ### 常微分方程初值问题
 
 **Euler法**: 基本只有教学意义的算法；

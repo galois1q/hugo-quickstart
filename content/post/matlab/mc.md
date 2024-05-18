@@ -1,4 +1,4 @@
----
+<!-- ---
 title: 'Monte Carlo'
 subtitle: 
 summary: '计算物理相关总结'
@@ -12,7 +12,18 @@ lastMod: 'today'
 image:
   caption: ''
   focal_point: ''
----
+--- -->
+
++++
+author = "Hugo Authors"
+title: "Monte Carlo"
+date: "today"
+description = "计算物理相关总结"
+tags = [
+    "计算物理",
+]
+math: true
++++
 
 
 ### 随机数生成

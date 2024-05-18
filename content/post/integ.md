@@ -58,7 +58,6 @@ end
 
  
 $$
-\tiny
 \begin{aligned}
     \int_a^b {f(x)dx} & = \frac{h}{3}[f(a) + 4\sum\limits_{k = 0}^{n - 1} {f(a + (2k + 1)h)}  + 2\sum\limits_{k = 1}^{n - 1} {f(a + 2kh)}  + f(b)],\\
     &\quad {{h = (b - a)/2n,\quad }}{x_{k}= a + kh (k = 0,1,...2n)}

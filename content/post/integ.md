@@ -2,7 +2,7 @@
 ---
 author: Hugo Authors
 title: 数值积分与数值求根
-date: 2019-02-08
+date: today
 description: 计算物理
 math: true
 ---
@@ -96,7 +96,7 @@ end
 
 ### 数值求根
 
-**二分法**: 最常见最简单的求根方式，利用满足 $f(a)f(b)<0$必在 $[a,b]$内有根进行二分求根。优点是可以找到所有根，但收敛速度慢。
+**二分法** : 最常见最简单的求根方式，利用满足 $f(a)f(b)<0$必在 $[a,b]$内有根进行二分求根。优点是可以找到所有根，但收敛速度慢。
 
 ```matlab
 function [x,n]=bisection_root(f,a,b,delta)
@@ -119,7 +119,7 @@ function [x,n]=bisection_root(f,a,b,delta)
 
 ```
 
-**简单搜索法结合二分法**:二分法的改进
+**简单搜索法结合二分法** :二分法的改进
 
 ```matlab
 %简单搜索法结合二分法
@@ -150,7 +150,7 @@ root=x0;
 end
 ```
 
-**Newton法**:利用如下公式逼近根，在 $\lvert f(x_k) \rvert \le \delta, \lvert x_k-x_{k+1} \rvert \le\epsilon $停止收敛。
+**Newton法**: 利用如下公式逼近根，在 $\lvert f(x_k) \rvert \le \delta, \lvert x_k-x_{k+1} \rvert \le\epsilon $停止收敛。
 $${x_{k + 1}} = {x_k} - \frac{{f({x_k})}}{{f'({x_k})}},\quad k = 0,1,2, \cdots $$
 Newton法收敛速度快，但依赖于给定函数的导数表达式且未必能找到所有根。
 
@@ -172,7 +172,7 @@ end
 ```
 
 
-**弦割法**: 利用数值微分估计实际导数的改进Newton法：
+**弦割法** : 利用数值微分估计实际导数的改进Newton法：
 $${x_{k + 1}} = {x_k} - \frac{{f({x_k})({x_k} - {x_{k - 1}})}}{{f({x_k}) - f({x_{k - 1}})}}$$
 
 

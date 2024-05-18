@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>mc.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h3 id="%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90">随机数生成</h3>
+<p><strong>线性同余法</strong></p>
+<p>若要生成 $[0,1]$上的随机数，可通过如下递推式生成伪随机数：</p>
+<p>$$
+r_{i+1}= (ar_i+c)\mathrm{mod}M
+$$</p>
+<p>所得${r_i/ M}$即想要的随机数。</p>
+<pre class="hljs"><code><div>a=<span class="hljs-number">5</span>;c=<span class="hljs-number">1</span>;r1=<span class="hljs-number">3</span>;m=<span class="hljs-number">2</span>^<span class="hljs-number">8</span>
+N=<span class="hljs-number">1000</span>;<span class="hljs-comment">%随机数个数</span>
+r=<span class="hljs-built_in">zeros</span>(<span class="hljs-number">1</span>,N);
+<span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span>=<span class="hljs-number">1</span>:N
+    r(<span class="hljs-built_in">i</span>)=<span class="hljs-built_in">mod</span>(a*r1+c,m);
+    r1=r(<span class="hljs-built_in">i</span>);
+<span class="hljs-keyword">end</span>
+<span class="hljs-built_in">figure</span>; <span class="hljs-built_in">plot</span>(<span class="hljs-number">1</span>:N,r/m,<span class="hljs-string">'-*'</span>)
+</div></code></pre>
+<h4 id="mc-%E7%A7%AF%E5%88%86">MC 积分</h4>
+<p><strong>直接抽样</strong>：考虑 $x_i \sim \mathrm{rand}(0,1)$服从随机分布，积分等价于求 $f(x_i)$的期望
+$$
+I= \int_{0}^1f(x)\mathrm{d}x =\lim_{N \to \infty}
+\frac{1}{N} \sum_{i=1}^{N}f(x_i)
+$$</p>
+<p>缺点：往往需要较大的样本量才能达到较小的误差。</p>
+<p><strong>重要抽样</strong></p>
+<p>考虑变量 $x_i\sim w(x)$,其中：
+$$
+\int_{0}^1w(x)\mathrm{d}x=1
+$$</p>
+<p>利用 ：</p>
+<p>$$
+y(x)=\int_{0}^{x}w(x')\mathrm{d} x'
+$$</p>
+<p>则原积分可以表示为：</p>
+<p>$$
+I= \int_{0}^1 \frac{f(x(y))}{w(x(y))}\mathrm{d}y =\lim_{N \to \infty}
+\frac{1}{N} \sum_{i=1}^{N}\frac{f(x(y_i))}{w(x(y_i))}
+$$</p>
+<p>其中$y_i \sim \mathrm{rand}(0,1)$，如果 $\frac{f}{w}\sim \mathrm{const}$则抽样良好。</p>
+<p>难点：构造合适的分布 $w(x)$与求反函数 $x(y)$。</p>
+<h4 id="%E7%89%B9%E5%AE%9A%E9%9A%8F%E6%9C%BA%E5%88%86%E5%B8%83%E6%95%B0%E6%9E%84%E9%80%A0">特定随机分布数构造</h4>
+<p><strong>Gauss 分布</strong></p>
+<p>$$
+w(x)=\frac{1}{\sqrt{2\pi}}e^{\frac{1}{2}x^2}
+$$</p>
+<p>由概率论：</p>
+<p>$$
+\frac{1}{12}\overline{\mathrm{rand}(0,1)}-6\sim N(0,1)
+$$</p>
+<pre class="hljs"><code><div><span class="hljs-comment">%Gauss分布的随机数；</span>
+
+N=<span class="hljs-number">100000</span>;
+Gauss=<span class="hljs-built_in">zeros</span>(<span class="hljs-number">1</span>,N);
+<span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span>=<span class="hljs-number">1</span>:<span class="hljs-number">12</span>
+    Gauss=Gauss+<span class="hljs-built_in">rand</span>(<span class="hljs-number">1</span>,N);
+<span class="hljs-keyword">end</span>
+
+Gauss=Gauss<span class="hljs-number">-6</span>;
+<span class="hljs-built_in">figure</span>;<span class="hljs-built_in">plot</span>(Gauss,<span class="hljs-number">1</span>:N,<span class="hljs-string">'*'</span>)
+
+<span class="hljs-comment">%------判断分布是否为Gauss分布-----------------</span>
+Num=<span class="hljs-number">501</span>;                                                <span class="hljs-comment">%区间大小</span>
+Max=<span class="hljs-built_in">max</span>(<span class="hljs-built_in">abs</span>(Gauss))+<span class="hljs-number">10</span>^<span class="hljs-number">-9</span>;                       <span class="hljs-comment">%边界</span>
+y=<span class="hljs-built_in">zeros</span>(<span class="hljs-number">1</span>,Num<span class="hljs-number">-1</span>);
+x=<span class="hljs-built_in">linspace</span>(-Max,Max,Num);   <span class="hljs-comment">%-Max,Max间分为501个点，500段</span>
+h=x(<span class="hljs-number">2</span>)-x(<span class="hljs-number">1</span>);
+<span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span>=<span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(Gauss)
+    index=<span class="hljs-built_in">fix</span>((Gauss(<span class="hljs-built_in">i</span>)+Max)/h)+<span class="hljs-number">1</span>;
+    y(index)=y(index)+<span class="hljs-number">1</span>;
+<span class="hljs-keyword">end</span>
+<span class="hljs-built_in">figure</span>;bar(x(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span><span class="hljs-number">-1</span>),y);                       <span class="hljs-comment">%生成数绘图</span>
+</div></code></pre>
+<p><strong>Von Neumanm舍选法</strong></p>
+<p>考虑 $[a,b]$区间上的有界分布 $w(x)$,$w(x)\le c\equiv   w'(x)$,则可如下生成按 $w(x)$分布的随机数：</p>
+<ul>
+<li>生成 $[a,b]$内的均匀分布随机数$x$
+$$
+x=(b-a)\mathrm{rand}(0,1)+a
+$$</li>
+<li>生成 $[0,c]$内的均匀分布随机数$y$
+$$
+y=c\mathrm{rand}(0,1)
+$$</li>
+<li>若 $y\le w(x)$，接受随机数 $x$w为所需 $w(x)$分布的随机数，否则重新抽取 $(x,y)$</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment">%利用Von Neumann舍选法产生随机数</span>
+a=<span class="hljs-number">0</span>;b=<span class="hljs-number">1.0</span>;
+h=<span class="hljs-number">0.001</span>;
+w=@(x) <span class="hljs-number">6</span>/<span class="hljs-number">5</span>*(<span class="hljs-number">1</span><span class="hljs-number">-0.5</span>*x.^<span class="hljs-number">2</span>);<span class="hljs-comment">%随意选取的分布</span>
+N=<span class="hljs-number">5</span>*<span class="hljs-number">10</span>^<span class="hljs-number">6</span>;
+xx_s=Von_Neumann(w,a,b,h,N);
+<span class="hljs-built_in">plot</span>(xx_s(<span class="hljs-number">1</span>:N),<span class="hljs-number">1</span>:N,<span class="hljs-string">'*'</span>)
+
+<span class="hljs-comment">%---------统计随机数的分布------------</span>
+M=<span class="hljs-number">1000</span>;
+yy1=<span class="hljs-built_in">zeros</span>(<span class="hljs-number">1</span>,M);
+h1=(b-a)/M;
+xx1=a:h1:b;
+<span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span>=<span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(xx_s)
+    index=<span class="hljs-built_in">fix</span>(xx_s(<span class="hljs-built_in">i</span>)/h1)+<span class="hljs-number">1</span>;
+    yy1(<span class="hljs-number">1</span>,index)=yy1(<span class="hljs-number">1</span>,index)+<span class="hljs-number">1</span>;
+<span class="hljs-keyword">end</span>
+<span class="hljs-built_in">figure</span>;bar(xx1(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span><span class="hljs-number">-1</span>),yy1);                       <span class="hljs-comment">%生成数绘图</span>
+S=interg(a,b,w);
+yy1=yy1/N/h1*S; <span class="hljs-comment">%因为yy1/N/h1在[a,b]上的积分为1，为了与w比较，乘以其在[a,b]上的积分S</span>
+<span class="hljs-built_in">figure</span>;<span class="hljs-built_in">plot</span>(xx1(<span class="hljs-number">1</span>:M),yy1,<span class="hljs-string">'r*-'</span>);title(<span class="hljs-string">'Von Neumann舍选法产生的随机数分布'</span>);
+<span class="hljs-built_in">hold</span> on
+<span class="hljs-built_in">plot</span>(xx1(<span class="hljs-number">1</span>:M),w(xx1(<span class="hljs-number">1</span>:M)),<span class="hljs-string">'b'</span>)
+<span class="hljs-built_in">legend</span>(<span class="hljs-string">'Von Neumann舍选法产生的随机数分布'</span>,<span class="hljs-string">'精确分布'</span>)
+
+<span class="hljs-comment">%生成步长为$h$的[a,b]区间N个按w(x)分布的随机数函数</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">xx_s</span>=<span class="hljs-title">Von_Neumann</span><span class="hljs-params">(w,a,b,h,N)</span></span>
+<span class="hljs-keyword">if</span> nargin &lt; <span class="hljs-number">5</span>        <span class="hljs-comment">%nargin是用来判断输入变量个数的函数 </span>
+    h = <span class="hljs-number">10</span>^<span class="hljs-number">-4</span>; <span class="hljs-comment">%步长标准</span>
+<span class="hljs-keyword">end</span>
+x=a:h:b;
+y_m=<span class="hljs-built_in">max</span>(w(x))*<span class="hljs-number">1.001</span>;<span class="hljs-comment">%选择的w'</span>
+<span class="hljs-built_in">i</span>=<span class="hljs-number">0</span>;     
+n=<span class="hljs-number">0</span>;
+xx_s=<span class="hljs-built_in">zeros</span>(N,<span class="hljs-number">1</span>);
+<span class="hljs-keyword">while</span> <span class="hljs-built_in">i</span>&lt;N
+    xx=(b-a)*<span class="hljs-built_in">rand</span>(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)+a;<span class="hljs-comment">%产生[a,b]区间上的均匀分布的随机数</span>
+    yy=y_m*<span class="hljs-built_in">rand</span>(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>);
+    n=n+<span class="hljs-number">1</span>;   <span class="hljs-comment">%统计产生了多少次随机数</span>
+    <span class="hljs-keyword">if</span> yy&lt;=w(xx) <span class="hljs-comment">%舍选法的判断标准</span>
+        <span class="hljs-built_in">i</span>=<span class="hljs-built_in">i</span>+<span class="hljs-number">1</span>;
+        xx_s(<span class="hljs-built_in">i</span>)=xx; 
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">S</span>=<span class="hljs-title">interg</span><span class="hljs-params">(a,b,w)</span> %<span class="hljs-title">w</span>函数在<span class="hljs-params">[a,b]</span>上的积分</span>
+    n=<span class="hljs-number">10000</span>;
+    h=(b-a)/n;
+    xx_h=a:h:b;
+    ww=w(xx_h);
+    S=(<span class="hljs-number">4</span>*sum(ww(<span class="hljs-number">2</span>:<span class="hljs-number">2</span>:n))+<span class="hljs-number">2</span>*sum(ww(<span class="hljs-number">3</span>:<span class="hljs-number">2</span>:n<span class="hljs-number">-1</span>))+ww(<span class="hljs-number">1</span>)+ww(n+<span class="hljs-number">1</span>))*h/<span class="hljs-number">3</span>; <span class="hljs-comment">%simpson积分公式</span>
+<span class="hljs-keyword">end</span>
+</div></code></pre>
+<p><strong>Metropolis算法</strong></p>
+<p>Metropolis算法与辐射原理一致，设变量序列 $X\sim w(X)$，应决定 $X_n$的下一点 $X_{n+1}$点生成。</p>
+<ul>
+<li>将$w(X)$类比为能量，若$X_t$相对于$X_n$处于高能级, 即 $w(X_t)&gt;w(X_{n})$，则 $X_t\to X_n$的自发辐射概率为1,$X_t$总是可接受的；</li>
+<li>若$X_t$相对于$X_n$处于低能级, 即 $w(X_t)&lt;w(X_{n})$，则$X_t\to X_n$的受激辐射概率为 $r=\frac{w(X_t)}{w(X_n)}$,仅有概率$r$使得$X_t$是可接受的；</li>
+</ul>
+<p>一般严格算法如下：</p>
+<ul>
+<li>取 t=0对应无迭代初始状态;</li>
+<li>利用先验分布 $\pi^{(0)}$生成初始元素 $x_0$;</li>
+<li>进行如下循环直到 $t=M$，$M$为采样数；
+<ul>
+<li>$t=t+1$;</li>
+<li>利用建议分布 $q(x\mid x_{t-1})$生成建议点 $x*$；</li>
+<li>计算接受概率 $\alpha = \mathrm{min}\left(1,\frac{p(x^*)}{p(x^{(t-1)})}\right)$</li>
+<li>生成均匀随机数 $u\sim \mathrm{rand}(0,1) $</li>
+<li>若 $u\le \alpha$，则接受建议点 $x_t=x*$;</li>
+<li>否则 $x_{t}=x_{t-1}$</li>
+</ul>
+</li>
+</ul>
+<p>通常取 $\pi^{(0)}\sim  N(0,1)$，而 $q(x_t\mid x_{t-1})\sim N(x_{t-1},1)$.</p>
+<pre class="hljs"><code><div>
+clear; clc;
+close all;
+
+N=<span class="hljs-number">50000</span>;
+a=<span class="hljs-number">0</span>;
+b=<span class="hljs-number">10</span>;
+w = @(x) (<span class="hljs-number">1</span> + x.^<span class="hljs-number">2</span>).^<span class="hljs-number">-1</span>;
+xx=mymetro(w,N);
+<span class="hljs-built_in">figure</span>;
+histogram(xx,<span class="hljs-number">200</span>,<span class="hljs-string">'Normalization'</span>,<span class="hljs-string">'pdf'</span>);<span class="hljs-comment">%绘制 x 的概率密度函数估算值。</span>
+
+
+Num=<span class="hljs-number">501</span>;                                                <span class="hljs-comment">%区间大小</span>
+Max=<span class="hljs-built_in">max</span>(<span class="hljs-built_in">abs</span>(xx))+<span class="hljs-number">10</span>^<span class="hljs-number">-9</span>;                       <span class="hljs-comment">%边界</span>
+y=<span class="hljs-built_in">zeros</span>(<span class="hljs-number">1</span>,Num<span class="hljs-number">-1</span>);
+x=<span class="hljs-built_in">linspace</span>(-Max,Max,Num);
+h=x(<span class="hljs-number">2</span>)-x(<span class="hljs-number">1</span>);
+<span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span>=<span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(xx)
+    index=<span class="hljs-built_in">fix</span>((xx(<span class="hljs-built_in">i</span>)+Max)/h)+<span class="hljs-number">1</span>; <span class="hljs-comment">%判定xx(i)处于哪个子区间，fix为舍去小数取整运算</span>
+    y(index)=y(index)+<span class="hljs-number">1</span>;          <span class="hljs-comment">%该子区间的随机数数目+1</span>
+<span class="hljs-keyword">end</span>
+<span class="hljs-built_in">figure</span>;bar(x(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span><span class="hljs-number">-1</span>),y); 
+
+
+<span class="hljs-comment">%精确值绘图</span>
+<span class="hljs-built_in">figure</span>,fplot(w,[-Max,Max],<span class="hljs-string">'r'</span>);
+<span class="hljs-built_in">hold</span> on;
+S=interg(-Max,Max,w);
+y=y/<span class="hljs-built_in">length</span>(xx)/h*S;  <span class="hljs-comment">%生成的随机数的数目为n(length(xx))，走的总步数为N</span>
+<span class="hljs-built_in">plot</span>(x(<span class="hljs-number">1</span>:Num<span class="hljs-number">-1</span>),y,<span class="hljs-string">'*'</span>);title(<span class="hljs-string">'验证随机数分布'</span>);
+<span class="hljs-built_in">legend</span>(<span class="hljs-string">'精确分布'</span>,<span class="hljs-string">'随机数分布'</span>)
+<span class="hljs-built_in">hold</span> off
+
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">S</span>=<span class="hljs-title">interg</span><span class="hljs-params">(a,b,w)</span> %<span class="hljs-title">w</span>函数在<span class="hljs-params">[a,b]</span>上的积分 </span>
+    n=<span class="hljs-number">10000</span>;
+    h=(b-a)/n;
+    xx_h=a:h:b;
+    ww=w(xx_h);
+    <span class="hljs-comment">%S=sum(w(xx_h).*(b-a)/n)-w(a)*(b-a)/2/n-w(b)*(b-a)/2/n; %梯形算法</span>
+    S=(<span class="hljs-number">4</span>*sum(ww(<span class="hljs-number">2</span>:<span class="hljs-number">2</span>:n))+<span class="hljs-number">2</span>*sum(ww(<span class="hljs-number">3</span>:<span class="hljs-number">2</span>:n<span class="hljs-number">-1</span>))+ww(<span class="hljs-number">1</span>)+ww(n+<span class="hljs-number">1</span>))*h/<span class="hljs-number">3</span>; <span class="hljs-comment">%simpson积分公式</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">x</span>=<span class="hljs-title">mymetro</span><span class="hljs-params">(w,N)</span></span>
+    x=<span class="hljs-built_in">zeros</span>(<span class="hljs-number">1</span>,N);
+    x(<span class="hljs-number">1</span>)=<span class="hljs-built_in">randn</span>;<span class="hljs-comment">%标准正态分布生成初始随机数</span>
+    t = <span class="hljs-number">1</span>; <span class="hljs-comment">% 抽样编号</span>
+    <span class="hljs-keyword">while</span> t&lt;N
+        t=t+<span class="hljs-number">1</span>;
+        <span class="hljs-comment">%建议采样</span>
+        xs= normrnd(x(t<span class="hljs-number">-1</span>) ,<span class="hljs-number">1</span>); <span class="hljs-comment">% 按照建议抽样函数进行采样</span>
+        r=<span class="hljs-built_in">min</span>([<span class="hljs-number">1</span>, w(xs)/w(x(t<span class="hljs-number">-1</span>))]); <span class="hljs-comment">% 接受概率</span>
+        <span class="hljs-comment">%判断是否接受</span>
+        u = <span class="hljs-built_in">rand</span>; <span class="hljs-comment">% Metropolis 采样的核心部分</span>
+        <span class="hljs-keyword">if</span> u &lt; r
+            x(t) = xs;
+        <span class="hljs-keyword">else</span>
+            x(t) = x(t<span class="hljs-number">-1</span>);
+        <span class="hljs-keyword">end</span>  
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</div></code></pre>
+
+</body>
+</html>

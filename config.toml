@@ -1,4 +1,4 @@
 baseURL = 'https://cohomology.netlify.app/'
 languageCode = 'en-us'
-title = 'Netlify + Hugo Quickstart'
+title = 'Site of Orbifold '
 theme = 'hugo-texify2'
